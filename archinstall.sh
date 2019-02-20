@@ -11,7 +11,7 @@ NOTE="\033[38;5;220m"
 BAD="\033[38;5;9m"
 RESET="\033[0m"
 
-# Acknoledgement check
+# Acknowledgement check
 userAck () {
 	echo -e "${INPUT}Press enter if you understand...${RESET}"
 	read
@@ -31,7 +31,7 @@ verifyUEFI () {
 	fi
 }
 
-# Verifies and makes WiFi connection
+# Verifies kernel modules existence and state and makes WiFi connection
 wifiConf() {
 	echo -e "${STATUS}Checking Wifi connection feasability...${RESET}"
 	
@@ -110,7 +110,7 @@ partition () {
 	echo -e "${GOOD}Partitioning successful${RESET}"
 }
 
-# Formats the DISK partitions
+# Formats the root partition
 format () {
 	# Format root as ext4
 	echo -e "${STATUS}Formatting /...${RESET}"
@@ -123,7 +123,7 @@ format () {
 	echo -e "${GOOD}Formatting sucessful${RESET}"
 }
 
-# Mount the DISK
+# Mount the partitions
 mountDisk () {
 	# Mounting procedure
 	echo -e "${STATUS}Mounting install disk...${RESET}"
@@ -173,7 +173,7 @@ installBase () {
 	echo -e "${GOOD}base and base-devel installed${RESET}"
 }
 
-# Configuration :(
+# Configuration
 configSys () {
 	# Fstab
 	echo -e "${STATUS}Generating fstab file...${RESET}"
