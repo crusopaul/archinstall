@@ -6,5 +6,5 @@ Prior to using this script Windows 10 must already be installed and its boot par
 ````
 wget https://github.com/crusopaul/archinstall/raw/master/archinstall.sh
 chmod +x archinstall.sh
-./archinstall.sh preinstall
+./archinstall.sh preinstall iwlwifi
 ````
