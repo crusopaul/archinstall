@@ -168,7 +168,10 @@ installBase () {
 	# Send it
 	echo -e "${STATUS}Installing base and base-devel. This might take a while...${RESET}"
 	pacstrap /mnt base base-devel
-	mkdir /mnt/etc/pacman.d/mirrorlist
+	if [ ! -d /mnt/etc/pacman.d ]
+	then
+		mkdir /mnt/etc/pacman.d
+	fi
 	cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 	echo -e "${GOOD}base and base-devel installed${RESET}"
 }
@@ -281,7 +284,7 @@ miscConf () {
 	echo "blacklist snd_hda_codec_realtek" > /etc/modprobe.d/blacklist.conf
 	echo -e "${GOOD}Audio issue patched${RESET}"
 	echo -e "${STATUS}Installing additional packages...${RESET}"
-	arch-chroot /mnt pacman -S xf86-input-libinput xf86-video-intel xorg-xbacklight fprintd ntfs-3g reflector i3-wm i3status dmenu conky lightdm lightdm-webkit2-greeter feh xfce4-terminal thunar wget xorg-xserver ttf-droid
+	arch-chroot /mnt pacman -S xf86-input-libinput xf86-video-intel xorg-xbacklight fprintd ntfs-3g reflector i3-wm i3status dmenu conky lightdm lightdm-webkit2-greeter feh xfce4-terminal thunar wget xorg-server ttf-droid
 	echo -e "${STATUS}Adding a default user...${RESET}"
 	echo -en "${INPUT}Choose a username: ${RESET}"
 	username=""
