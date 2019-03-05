@@ -244,7 +244,7 @@ configSys () {
 setupGRUB () {
 	# Get GRUB installed and set up
 	echo -e "${STATUS}Fetching GRUB...${RESET}"
-	arch-chroot /mnt pacman -S --noconfirm grub efibootmgr intel-ucode os-prober
+	arch-chroot /mnt pacman -S --noconfirm grub efibootmgr intel-ucode
 	echo -e "${GOOD}GRUB fetched${RESET}"
 	echo -e "${STATUS}Installing GRUB to disk...${RESET}"
 	arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
@@ -263,7 +263,6 @@ setupGRUB () {
 	arch-chroot /mnt pacman -S ck-broadwell
 	echo -e "${GOOD}Linux-ck-broadwell fetched${RESET}"
 	echo -e "${STATUS}Making GRUB configuration file${RESET}"
-	echo -e "${NOTE}Go ahead and ignore warnings from GRUB${RESET}"
 	fsuuid=$(grub-probe -t fs_uuid -d $1)
 	echo -e "menuentry \"Windows 10\" {" >> /mnt/etc/grub.d/40_custom
 	echo -e "insmod part_gpt" >> /mnt/etc/grub.d/40_custom
